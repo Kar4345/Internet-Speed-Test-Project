@@ -1,0 +1,38 @@
+body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container{
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+div > * {
+    border: 1px solid black;
+}
+.meter{
+    width: 250px;
+    height: 250px;
+}
+.speed{
+    width: 250px;
+    height: 150px;
+}
+.start{
+    width: 250px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#start-button{
+    border: none;
+    background-color: skyblue;
+    color: black;
+    width: 75px;
+    height: 50px;
+}

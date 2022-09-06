@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="bundle.js"></script>
+
+    <title>Document</title>
+  </head>
+  <body>
+    <header class="social">
+      <a href="https://github.com/Kar4345/" target="_blank"
+        ><div id="git"><img alt="Github" src="./resources/giticon.png" /></div
+      ></a>
+      <a
+        href="https://www.linkedin.com/in/kartik-ghudhavad-14a53997/"
+        target="_blank"
+        ><div id="linked">
+          <img alt="linkedIn" src="./resources/linkedin.png" /></div
+      ></a>
+      <a href="https://www.instagram.com/ghudawadkartik/" target="_blank"
+        ><div id="insta">
+          <img alt="instagram" src="./resources/Instagram-Icon.png.webp" /></div
+      ></a>
+    </header>
+
+    <header>
+      <div id="heading">Internet Speedometer</div>
+    </header>
+    <div class="conatainer">
+      <div class="meter">
+        <div class="gauge">
+          <div class="guage__body">
+            <div class="guage__fill"></div>
+            <div class="guage__cover"></div>
+          </div>
+        </div>
+      </div>
+      <div class="speed">0.00 Mbps</div>
+      <div class="start">
+        <button type="button" id="start-button">Start</button>
+      </div>
+    </div>
+
+    <script>
+      const start = document.getElementById("start-button");
+      const speed = document.getElementsByClassName("speed")[0];
+      const guageElement = document.querySelector(".guage");
+      function setGuageValue(value) {
+        if (value < 0 || value > 1) {
+          return;
+        }
+        document.querySelector(".guage__fill").style.transform = `rotate(${
+          value / 2
+        }turn)`;
+        document.querySelector(".guage__cover").textContent = `${Math.round(
+          value * 100
+        )} Mbps`;
+      }
+      start.addEventListener("click", () => {
+        speed.innerHTML = "Loading...";
+
+        const check = setInterval(function doingSomething() {
+          speedtest
+            .getSpeed()
+            .then((s) => {
+              let spd = s.toFixed(2);
+              let p = spd / 100;
+              speed.innerHTML = `${s.toFixed(2)} Mbps`;
+              console.log(p);
+              setGuageValue(p);
+              console.log(`Speed: ${s.toFixed(2)} Mbps`);
+              console.log(typeof s);
+            })
+            .catch((e) => {
+              console.error("Not showing", e);
+            });
+        }, 500);
+
+        setTimeout((e) => {
+          clearInterval(check);
+          if (!check) {
+            alert("Your speed is: ", spd);
+          }
+        }, 20000);
+      });
+    </script>
+  </body>
+</html>

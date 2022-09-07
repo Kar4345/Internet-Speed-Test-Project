@@ -337,7 +337,7 @@ module.exports = Timer;
 
 },{}],4:[function(require,module,exports){
 (function (global){(function (){
-const FastSpeedtest = require("fast-speedtest-api");
+var FastSpeedtest = require("fast-speedtest-api");
 
 let speedtest = new FastSpeedtest({
   token: "YXNkZmFzZGxmbnNkYWZoYXNkZmhrYWxm", // required
